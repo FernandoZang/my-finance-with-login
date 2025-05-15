@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finances/model/Transacao.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
-import 'package:my_finances/card_transacao.dart';
+import 'package:my_finances/widget/card_transacao.dart';
 
 class TelaEntradas extends StatefulWidget {
 
