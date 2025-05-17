@@ -37,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushReplacementNamed(context, '/home'); // Navega para a tela principal
+      Navigator.pushReplacementNamed(context, '/auth'); // Navega para a tela principal
     }
   }
 

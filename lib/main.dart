@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finances/screens/auth/auth.dart';
 import 'package:my_finances/screens/splash.dart';
 import 'package:my_finances/screens/entrada.dart';
 import 'package:my_finances/screens/saidas.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/onboarding': (context) => OnboardingScreen(),
         '/home': (context) => const MyHomePage(title: 'Minhas Finanças'),
+        '/auth': (context) => const Auth(),
       },
     );
   }
