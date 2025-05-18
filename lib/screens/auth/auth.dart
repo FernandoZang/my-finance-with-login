@@ -1,5 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_finances/main.dart';
 import 'package:my_finances/widget/login_text_form_field.dart';
 
 class Auth extends StatefulWidget {
@@ -24,11 +27,18 @@ class _AuthState extends State {
     });
   }
 
-  bool _doLogin() {
-    setState(() {
-      //
-    });
-    return true;
+  void _doLogin() async {
+    final user = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication userAuth = await user!.authentication;
+
+    var credential = await GoogleAuthProvider.credential(idToken: userAuth.idToken, accessToken: userAuth.accessToken);
+
+    FirebaseAuth.instance.signInWithCredential(credential)
+      .then(
+        (it) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage(title: 'Minhas Finanças'))) 
+    );
+
   }
 
   
