@@ -17,5 +17,3 @@ O Sistema de Controle de finanças é um aplicativo desenvolvido para ajudar na 
 
 ## Integrantes
   - Fernando Zang
-  - Diogo Vinicios Crespi
-  - Ellyson Vissotto De Moura
