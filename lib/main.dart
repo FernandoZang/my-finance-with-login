@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finances/screens/auth/auth.dart';
 import 'package:my_finances/screens/splash.dart';
@@ -62,6 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _logOut(){
+      FirebaseAuth.instance.signOut()
+      .then(
+        (it) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Auth())) 
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,6 +120,11 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.settings),
               title: const Text('Setting'),
               onTap: () { Navigator.pop(context); }
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Sair'),
+              onTap: _logOut
             )
           ]
         ),

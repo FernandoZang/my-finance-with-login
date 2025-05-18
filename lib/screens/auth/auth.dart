@@ -38,6 +38,19 @@ class _AuthState extends State {
       .then(
         (it) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage(title: 'Minhas Finanças'))) 
     );
+  }
+
+    void _doLoginWithGoogle() async {
+    final user = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication userAuth = await user!.authentication;
+
+    var credential = await GoogleAuthProvider.credential(idToken: userAuth.idToken, accessToken: userAuth.accessToken);
+
+    FirebaseAuth.instance.signInWithCredential(credential)
+      .then(
+        (it) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage(title: 'Minhas Finanças'))) 
+    );
 
   }
 
@@ -88,6 +101,12 @@ class _AuthState extends State {
                 SizedBox(height: 10),
 
                 ElevatedButton(onPressed: _doLogin, child: Text('Login')),
+
+                SizedBox(height: 20),
+
+                ElevatedButton(onPressed: _doLoginWithGoogle, child: Text('Login com Google')),
+
+                SizedBox(height: 30),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
