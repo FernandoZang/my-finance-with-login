@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:my_finances/model/Transacao.dart';
+import 'package:my_finances/model/repository/TransacaoRepository.dart';
+import 'package:my_finances/widget/card_transacao.dart';
+
+class TelaEntradaCreate extends StatefulWidget {
+
+  const TelaEntradaCreate(String s, {super.key});
+
+  @override
+  _TelaEntradaCreateState createState() => _TelaEntradaCreateState();
+
+}
+
+class _TelaEntradaCreateState extends State {
+  var repository = Transacaorepository();
+  
+  @override
+  Widget build(BuildContext context) {
+    var transacoes = repository.entradas();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Cadastrar Entrada"),
+        backgroundColor: const Color.fromARGB(255, 206, 55, 198),
+      ),
+      body: ListView.builder(Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Padding(padding: EdgeInsets.all(10)),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  FormTextFormField(
+                    controller: _emailController,
+                    label: 'Email',
+                    hintText: 'Informe E-mail',
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+
+                  SizedBox(height: 10),
+
+                  FormTextFormField(
+                    controller: _passwordController,
+                    label: 'Senha',
+                    hintText: 'Informe a Senha',
+                    obscureText: _obscurePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                      _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined
+                      ),
+                      onPressed: _togglePasswordVisibility,
+                    ),
+                    keyboardType: TextInputType.text,            
+                  ),
+
+                  SizedBox(height: 10),
+
+                  ElevatedButton(onPressed: _doLogin, child: Text('Login')),
+
+                  SizedBox(height: 20),
+
+                  ElevatedButton(onPressed: _doLoginWithGoogle, child: Text('Login com Google')),
+
+                  SizedBox(height: 30),
+
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     ElevatedButton(onPressed: _doLogin, child: Text('Cadastrar')),
+                  //     ElevatedButton(onPressed: _doLogin, child: Text('Esqueci minha senha'))
+                  //   ],
+                  // )
+                ],
+              )
+            )
+          ]
+        )
+      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addEntrada,
+        tooltip: 'Adicionar Entrada',
+        child: const Icon(Icons.add),
+      )
+    );
+  }
+
+
+
+  void _addEntrada(){
+      print('Adicionando entrada');
+  }
+}

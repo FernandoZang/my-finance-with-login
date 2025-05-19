@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_finances/main.dart';
-import 'package:my_finances/widget/login_text_form_field.dart';
+import 'package:my_finances/widget/form_text_form_field.dart';
 
 class Auth extends StatefulWidget {
 
@@ -69,55 +69,54 @@ class _AuthState extends State {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-          Padding(padding: EdgeInsets.all(10)),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-
-                LoginTextFormField(
-                  controller: _emailController,
-                  label: 'Email',
-                  hintText: 'Informe E-mail',
-                  keyboardType: TextInputType.emailAddress,
-                ),
-
-                SizedBox(height: 10),
-
-                LoginTextFormField(
-                  controller: _passwordController,
-                  label: 'Senha',
-                  hintText: 'Informe a Senha',
-                  obscureText: _obscurePassword,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined
-                    ),
-                    onPressed: _togglePasswordVisibility,
+            Padding(padding: EdgeInsets.all(10)),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  FormTextFormField(
+                    controller: _emailController,
+                    label: 'Email',
+                    hintText: 'Informe E-mail',
+                    keyboardType: TextInputType.emailAddress,
                   ),
-                  keyboardType: TextInputType.text,            
-                ),
 
-                SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                ElevatedButton(onPressed: _doLogin, child: Text('Login')),
+                  FormTextFormField(
+                    controller: _passwordController,
+                    label: 'Senha',
+                    hintText: 'Informe a Senha',
+                    obscureText: _obscurePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                      _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined
+                      ),
+                      onPressed: _togglePasswordVisibility,
+                    ),
+                    keyboardType: TextInputType.text,            
+                  ),
 
-                SizedBox(height: 20),
+                  SizedBox(height: 10),
 
-                ElevatedButton(onPressed: _doLoginWithGoogle, child: Text('Login com Google')),
+                  ElevatedButton(onPressed: _doLogin, child: Text('Login')),
 
-                SizedBox(height: 30),
+                  SizedBox(height: 20),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(onPressed: _doLogin, child: Text('Cadastrar')),
-                    ElevatedButton(onPressed: _doLogin, child: Text('Esqueci minha senha'))
-                  ],
-                )
-              ],
+                  ElevatedButton(onPressed: _doLoginWithGoogle, child: Text('Login com Google')),
+
+                  SizedBox(height: 30),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(onPressed: _doLogin, child: Text('Cadastrar')),
+                      ElevatedButton(onPressed: _doLogin, child: Text('Esqueci minha senha'))
+                    ],
+                  )
+                ],
+              )
             )
-          )
           ]
         )
       )
