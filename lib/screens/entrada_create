@@ -2,29 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:my_finances/model/Transacao.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
 import 'package:my_finances/widget/card_transacao.dart';
+import 'package:my_finances/widget/form_text_form_field.dart';
+import 'package:my_finances/screens/entrada.dart';
 
 class TelaEntradaCreate extends StatefulWidget {
 
-  const TelaEntradaCreate(String s, {super.key});
+  const TelaEntradaCreate({super.key});
 
   @override
   _TelaEntradaCreateState createState() => _TelaEntradaCreateState();
 
 }
 
-class _TelaEntradaCreateState extends State {
+class _TelaEntradaCreateState extends State<TelaEntradaCreate> {
   var repository = Transacaorepository();
+
+  final _formKey = GlobalKey<FormState>();
+  final _descricaoController = TextEditingController();
+  final _valorController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
-    var transacoes = repository.entradas();
-
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cadastrar Entrada"),
-        backgroundColor: const Color.fromARGB(255, 206, 55, 198),
+        backgroundColor: const Color.fromARGB(255, 206, 55, 198)
       ),
-      body: ListView.builder(Container(
+      body: Container(
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
@@ -34,63 +39,45 @@ class _TelaEntradaCreateState extends State {
               child: Column(
                 children: [
                   FormTextFormField(
-                    controller: _emailController,
-                    label: 'Email',
-                    hintText: 'Informe E-mail',
-                    keyboardType: TextInputType.emailAddress,
+                    controller: _descricaoController,
+                    label: 'Descrição',
+                    hintText: 'Informe Descrição'
                   ),
 
                   SizedBox(height: 10),
 
                   FormTextFormField(
-                    controller: _passwordController,
-                    label: 'Senha',
-                    hintText: 'Informe a Senha',
-                    obscureText: _obscurePassword,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                      _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined
-                      ),
-                      onPressed: _togglePasswordVisibility,
-                    ),
+                    controller: _valorController,
+                    label: 'Valor',
+                    hintText: 'Informe Valor',
                     keyboardType: TextInputType.text,            
                   ),
 
                   SizedBox(height: 10),
 
-                  ElevatedButton(onPressed: _doLogin, child: Text('Login')),
-
-                  SizedBox(height: 20),
-
-                  ElevatedButton(onPressed: _doLoginWithGoogle, child: Text('Login com Google')),
-
-                  SizedBox(height: 30),
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     ElevatedButton(onPressed: _doLogin, child: Text('Cadastrar')),
-                  //     ElevatedButton(onPressed: _doLogin, child: Text('Esqueci minha senha'))
-                  //   ],
-                  // )
+                  ElevatedButton(onPressed: _cadastrarEntrada, child: Text('Cadastrar Entrada'))
                 ],
               )
             )
           ]
-        )
-      )
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addEntrada,
-        tooltip: 'Adicionar Entrada',
-        child: const Icon(Icons.add),
-      )
+        )// Column
+      )// Container
     );
+
+
+
   }
 
-
-
-  void _addEntrada(){
-      print('Adicionando entrada');
+  @override
+  void dispose() {
+    _descricaoController.dispose();
+    _valorController.dispose();
+    super.dispose();
   }
+
+  void _cadastrarEntrada() {
+    repository.addEntrada(_descricaoController.text, double.parse(_valorController.text));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>TelaEntradas('Entradas')));
+  }
+
 }

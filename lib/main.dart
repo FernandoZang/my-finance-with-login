@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finances/screens/auth/auth.dart';
-import 'package:my_finances/screens/splash.dart';
 import 'package:my_finances/screens/entrada.dart';
 import 'package:my_finances/screens/saidas.dart';
 import 'package:my_finances/screens/onboarding.dart';

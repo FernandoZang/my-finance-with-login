@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finances/model/Transacao.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
+import 'package:my_finances/screens/saida_create.dart';
 import 'package:my_finances/widget/card_transacao.dart';
 
 class TelaSaidas extends StatefulWidget {
@@ -44,6 +45,6 @@ class _TelaSaidasState extends State {
   }
 
   void _addSaida(){
-      print('Adicionando saida');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> TelaSaidaCreate() ) );
   }
 }

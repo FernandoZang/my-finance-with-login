@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finances/model/Transacao.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
+import 'package:my_finances/screens/entrada_create';
 import 'package:my_finances/widget/card_transacao.dart';
 
 class TelaEntradas extends StatefulWidget {
@@ -43,9 +44,7 @@ class _TelaEntradasState extends State {
     );
   }
 
-
-
   void _addEntrada(){
-      print('Adicionando entrada');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>TelaEntradaCreate() ) );
   }
 }
