@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_finances/model/Transacao.dart';
+import 'package:my_finances/model/progress_model.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
+import 'package:my_finances/screens/entrada.dart';
 import 'package:my_finances/screens/saida_create.dart';
 import 'package:my_finances/widget/card_transacao.dart';
+import 'package:provider/provider.dart';
 
 class TelaSaidas extends StatefulWidget {
 
@@ -15,6 +18,17 @@ class TelaSaidas extends StatefulWidget {
 
 class _TelaSaidasState extends State {
   var repository = Transacaorepository();
+
+  static var visited = false;
+
+  @override
+  void initState() {
+    if(!visited) {
+      context.read<ProgressModel>().increaseProgress(0.1);
+      visited = true;
+    }
+    super.initState();
+  }
   
   @override
   Widget build(BuildContext context) {

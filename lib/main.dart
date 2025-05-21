@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finances/model/progress_model.dart';
 import 'package:my_finances/screens/auth/auth.dart';
 import 'package:my_finances/screens/entrada.dart';
 import 'package:my_finances/screens/saidas.dart';
 import 'package:my_finances/screens/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -14,8 +16,12 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ProgressModel(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +30,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'Minhas Finanças',
       theme: ThemeData(
@@ -62,6 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _goToEntradas(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaEntradas('Entradas')));
+  }
+
   void _logOut(){
       FirebaseAuth.instance.signOut()
       .then(
@@ -72,18 +83,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final progress = context.watch<ProgressModel>().progress;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text('Utilize as funcionalidades do app para progredir'),
+            SizedBox(height: 10,),
+            LinearProgressIndicator(
+              value: progress,
+              minHeight: 20,
+              backgroundColor: Colors.grey[300],
+              color: Colors.blue,
+            ),
+            SizedBox(height: 40,),
             Card(
               child: Text('Bem-vindo ao Minhas Finanças, aprenda a gerir o seu controle financeiro',
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 35)),
+              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 25)),
             ) 
           ],
         ),

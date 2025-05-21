@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_finances/main.dart';
+import 'package:my_finances/model/progress_model.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
 import 'package:my_finances/screens/saidas.dart';
 import 'package:my_finances/widget/card_transacao.dart';
 import 'package:my_finances/widget/form_text_form_field.dart';
+import 'package:provider/provider.dart';
 
 class TelaSaidaCreate extends StatefulWidget {
 
@@ -19,6 +22,17 @@ class _TelaSaidaCreateState extends State<TelaSaidaCreate> {
   final _formKey = GlobalKey<FormState>();
   final _descricaoController = TextEditingController();
   final _valorController = TextEditingController();
+
+    static var visited = false;
+
+  @override
+  void initState() {
+    if(!visited) {
+      context.read<ProgressModel>().increaseProgress(0.2);
+      visited = true;
+    }
+    super.initState();
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -76,7 +90,7 @@ class _TelaSaidaCreateState extends State<TelaSaidaCreate> {
 
   void _cadastrarSaida() {
     repository.addSaida(_descricaoController.text, double.parse(_valorController.text));
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>TelaSaidas('Entradas')));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage(title: 'Minhas Finanças')));
   }
 
 }
