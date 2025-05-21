@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_finances/model/Transacao.dart';
 import 'package:my_finances/model/repository/TransacaoRepository.dart';
 import 'package:my_finances/screens/saidas.dart';
 import 'package:my_finances/widget/card_transacao.dart';
