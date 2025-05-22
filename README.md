@@ -15,7 +15,6 @@ O Sistema de Controle de finanças é um aplicativo desenvolvido para ajudar na 
 - Flutter
 - Firebase
 - Firebase Auth - Google provider
-- Teqani-rewards
 - Provider package (state management)
 
 
@@ -28,8 +27,9 @@ O Sistema de Controle de finanças é um aplicativo desenvolvido para ajudar na 
 ## Execução
 
 1. Pre requisitos
-  a. Flutter 3 instalado
-  b. Aparelho Android (este app funciona apenas no Anndroid)
+  - Flutter 3 instalado
+  - Aparelho Android (este app funciona apenas no Anndroid)
+
 3. Clonar este repo na maquina local
 ```
   git clone git@github.com:FernandoZang/my-finance-with-login.git
