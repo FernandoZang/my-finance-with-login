@@ -28,7 +28,7 @@ O Sistema de Controle de finanças é um aplicativo desenvolvido para ajudar na 
 
 1. Pre requisitos
   - Flutter 3 instalado
-  - Aparelho Android (este app funciona apenas no Anndroid)
+  - Aparelho Android (este app funciona apenas no Android)
 
 3. Clonar este repo na maquina local
 ```
