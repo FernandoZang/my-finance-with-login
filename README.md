@@ -13,7 +13,32 @@ O Sistema de Controle de finanças é um aplicativo desenvolvido para ajudar na 
 
 ## Tecnologias Utilizadas
 - Flutter
+- Provider package (state management)
+- Firebase
+- Firebase Auth - Google provider
 
 
 ## Integrantes
   - Fernando Zang
+  - Gilvan Emerson Sfredo Junior
+  - Gabriel Zimmer Teixeira
+
+
+## Execução
+
+1. Pre requisitos
+  -Flutter 3 instalado
+  -Aparelho Android (este app funciona apenas no Anndroid)
+3. Clonar este repo na maquina local
+```
+  git clone git@github.com:FernandoZang/my-finance-with-login.git
+```
+3. Baixar dependencias
+```
+  flutter pub get
+```
+4. Conectar aparelho Android
+5. Executar app
+```
+  flutter run
+```
